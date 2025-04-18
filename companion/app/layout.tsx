@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { ThemeProvider } from "@/components/theme-provider"
 import {
   ClerkProvider,
   SignInButton,
@@ -7,7 +8,9 @@ import {
   SignedOut,
   UserButton,
 } from '@clerk/nextjs'
-import { Geist, Geist_Mono } from "next/font/google";
+import { cn } from "@/lib/utils";
+import { Geist, Geist_Mono,Inter } from "next/font/google";
+import { Navbar } from "@/components/navbar";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -18,6 +21,10 @@ const geistSans = Geist({
 const geistMono = Geist_Mono({
   variable: "--font-geist-mono",
   subsets: ["latin"],
+});
+const inter = Inter({
+  subsets: ["latin"],
+  variable: "--font-inter",
 });
 
 export const metadata: Metadata = {
@@ -32,18 +39,19 @@ export default function RootLayout({
 }>) {
   return (
     <ClerkProvider>
-      <html lang="en">
-        <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
-          <header className="flex justify-end items-center p-4 gap-4 h-16">
-            <SignedOut>
-              <SignInButton />
-              <SignUpButton />
-            </SignedOut>
-            <SignedIn>
-              <UserButton />
-            </SignedIn>
-          </header>
-          {children}
+      <html lang="en" suppressHydrationWarning>
+        <body className={cn("bg-secondary",inter.className)}>
+        <ThemeProvider
+            defaultTheme="system"
+            attribute="class"
+         
+            enableSystem
+            
+          >
+            
+            {children}
+            <SignInButton />
+          </ThemeProvider>
         </body>
       </html>
     </ClerkProvider>
