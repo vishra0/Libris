@@ -12,7 +12,7 @@ export const SearchInput = () => {
     const categoryId = searchParams.get("categoryId");
     const name = searchParams.get("name");
     const [value,setValue] = useState(name || "");
-    const debouncedValue = useDebounce<string>(value,500)
+    const debouncedValue = useDebounce<string>(value,500) //when we stop triggering the kwyboard for half second
     const onChange: ChangeEventHandler<HTMLInputElement> = (e) =>{
         setValue(e.target.value);
     }

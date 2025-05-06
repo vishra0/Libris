@@ -50,7 +50,7 @@ export const Categories: React.FC<CategoriesProps> = ({ data }) => {
           hover:opacity-75
           transition
           `,
-          !categoryId ? 'bg-primary/25' : 'bg-primary/10',
+          !categoryId ? 'bg-primary/25' : 'bg-primary/10',   //high;ight a button when pressed
         )}
       >
         Newest
@@ -75,7 +75,7 @@ export const Categories: React.FC<CategoriesProps> = ({ data }) => {
             hover:opacity-75
             transition
             `,
-            category.id === categoryId ? 'bg-primary/25' : 'bg-primary/10',
+            category.id === categoryId ? 'bg-primary/25' : 'bg-primary/10',   //it adds effect to show that that particular button is clicked
           )}
         >
           {category.name}
