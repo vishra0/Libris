@@ -4,9 +4,9 @@ import { auth, redirectToSignIn } from '@clerk/nextjs'
 
 interface CompanionIdPageProps {
   params: {
-    companionId: string
-  }
-}
+    companionId: string;
+  };
+};
 
 const CompanionIdPage = async ({ params }: CompanionIdPageProps) => {
   const { userId } = auth()

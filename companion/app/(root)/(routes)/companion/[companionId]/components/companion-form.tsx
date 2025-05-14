@@ -1,4 +1,4 @@
-'use client'
+"use client";
 
 import * as z from 'zod'   //for form schema
 import axios from 'axios'
@@ -21,7 +21,7 @@ import { Input } from '@/components/ui/input'
 import { Textarea } from '@/components/ui/textarea'
 import { Button } from '@/components/ui/button'
 import { ImageUpload } from '@/components/image-upload'
-import { useToast } from '@/components/ui/use-toast'
+import { toast } from "sonner"
 import { Separator } from '@/components/ui/separator'
 import {
   Select,
@@ -69,25 +69,24 @@ const formSchema = z.object({
 })
 
 interface CompanionFormProps {
-  categories: Category[]
-  initialData: Companion | null
+  categories: Category[];
+  initialData: Companion | null;
 }
 
 export const CompanionForm = ({
   categories,
   initialData,
 }: CompanionFormProps) => {
-  const { toast } = useToast()
   const router = useRouter()
 
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
-    defaultValues: initialData ?? {
-      name: '',
-      description: '',
-      instructions: '',
-      seed: '',
-      src: '',
+    defaultValues: initialData || {
+      name: "",
+      description: "",
+      instructions: "",
+      seed: "",
+      src: "",
       categoryId: undefined,
     },
   });
@@ -102,19 +101,13 @@ export const CompanionForm = ({
         await axios.post('/api/companion', values)
       }
 
-      toast({
-        description: 'Success.',
-        duration: 3000,
-      })
+     toast("Event has been created.")
+
 
       router.refresh()
       router.push('/')
     } catch (error) {
-      toast({
-        variant: 'destructive',
-        description: 'Something went wrong.',
-        duration: 3000,
-      })
+      toast("Event has not been created.")
     }
   }
 
