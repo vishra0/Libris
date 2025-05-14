@@ -47,9 +47,9 @@ export async function PATCH(
         name,
         description,
         instructions,
-        seed
-      }
-    });
+        seed,
+      },
+    })
 
     return NextResponse.json(companion)
   } catch (error) {
