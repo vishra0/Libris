@@ -64,7 +64,7 @@ export const ChatHeader = ({ companion }: ChatHeaderProps) => {
             <p className="font-bold">{companion.name}</p>
             <div className="flex items-center text-xs text-muted-foreground">
               <MessagesSquare className="w-3 h-3 mr-1" />
-              {companion._count.messages}
+              {companion._count.messages} 
             </div>
           </div>
           <p className="text-xs text-muted-foreground">
